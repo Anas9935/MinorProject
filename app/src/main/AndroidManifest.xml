@@ -20,22 +20,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.AudioActivity"></activity>
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".Views.First"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Views.Primary"
@@ -93,12 +83,17 @@
             android:name=".Views.VitalSignsResults"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity android:name=".LoginActivities.SignUpActivity" />
+        <activity android:name=".LoginActivities.OTP_Activity" />
+        <activity android:name=".LoginActivities.SplashScreenActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-
-
-
-
-
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivities.IntroScreen" />
+        <activity android:name=".LoginActivities.PhoneAuthActivity" />
 
 
     </application>

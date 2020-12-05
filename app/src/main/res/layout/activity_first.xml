@@ -5,7 +5,7 @@
     android:id="@+id/activity_first"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg4"
+    android:background="#fff"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
@@ -13,8 +13,6 @@
     android:paddingBottom="16dp"
     android:weightSum="1"
 >
-
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
@@ -24,33 +22,35 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.70" />
+        android:layout_weight="0.50" />
 
     <TextView
         android:id="@+id/tva"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.15" />
-
     <EditText
         android:id="@+id/edtu1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.08"
-        android:background="@drawable/textinputborder"
+        android:layout_height="44dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        tools:text="Mohammad Ravil"
         android:ems="10"
         android:inputType="textPersonName"
-        android:paddingLeft="15dp"
-        android:textColor="@android:color/black" />
-
+        android:focusable="true"
+        android:paddingLeft="13dp"
+        android:textColor="#000000"
+        android:fontFamily="@font/font_semibold"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:background="@drawable/user_edit_background">
+    </EditText>
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,26 +61,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Password"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.15" />
-
     <EditText
         android:id="@+id/edtp1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.09"
-        android:background="@drawable/textinputborder"
+        android:layout_height="44dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        tools:text="**********"
         android:ems="10"
         android:inputType="textPassword"
-        android:paddingLeft="15dp"
-        android:textColor="@android:color/black" />
-
+        android:focusable="true"
+        android:paddingLeft="13dp"
+        android:textColor="#000000"
+        android:fontFamily="@font/font_semibold"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:background="@drawable/user_edit_background">
+    </EditText>
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,12 +90,14 @@
 
     <CheckBox
         android:id="@+id/checkBoxRemember"
+        android:layout_marginLeft="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Remember Me"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/newacc"
         android:layout_width="168dp"
         android:layout_height="wrap_content"

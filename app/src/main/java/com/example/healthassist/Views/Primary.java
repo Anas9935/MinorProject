@@ -120,7 +120,8 @@ public class Primary extends AppCompatActivity {
 
                         Primary.super.onBackPressed();
                         Primary.this.finish();
-                        System.exit(0);
+                        Primary.this.finishAffinity();
+                       // System.exit(0);
                     }
                 }).create().show();
     }

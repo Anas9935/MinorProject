@@ -1,0 +1,45 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#feffff"
+    tools:context="LoginActivities.IntroScreen"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:id="@+id/login_img"
+        android:layout_width="340dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="130dp"
+        android:src="@mipmap/logo">
+    </ImageView>
+    <TextView
+        android:id="@+id/scanqr"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginLeft="23dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:fontFamily="@font/font_regular"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_border_black"
+        android:text="Login Me">
+    </TextView>
+    <TextView
+        android:id="@+id/signin"
+        android:layout_width="114dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginRight="23dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:fontFamily="@font/font_regular"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_border_black"
+        android:text="Sign In">
+    </TextView>
+</RelativeLayout>

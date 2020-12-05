@@ -31,7 +31,7 @@ public class First extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-
+        getSupportActionBar().hide();
         Meas = findViewById(R.id.prime);
         acc = findViewById(R.id.newacc);
         ed1 = findViewById(R.id.edtu1);

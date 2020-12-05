@@ -1,5 +1,4 @@
 package com.example.healthassist.Views;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.healthassist.R;
-
-
 public class Login extends AppCompatActivity {
 
     public ImageButton Log;
@@ -33,7 +28,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        getSupportActionBar().hide();
         Log = findViewById(R.id.Login);
         ed1 = findViewById(R.id.edth);
         ed2 = findViewById(R.id.edtw);
@@ -121,9 +116,9 @@ public class Login extends AppCompatActivity {
                     per.setweight(weight);
                     per.setgender(k);
                     Data.addUser(per);
-                    Intent i = new Intent(v.getContext(), First.class);
                     mainToast = Toast.makeText(Login.this.getApplicationContext(), "Your account has been created", Toast.LENGTH_SHORT);
                     mainToast.show();
+                    Intent i = new Intent(v.getContext(), Primary.class);
                     Login.this.startActivity(i);
                     Login.this.finish();
 

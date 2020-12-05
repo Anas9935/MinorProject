@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "402691706697",
+    "project_id": "healthassist-b2614",
+    "storage_bucket": "healthassist-b2614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402691706697:android:e9873467278afc0a16d498",
+        "android_client_info": {
+          "package_name": "com.example.healthassist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402691706697-ioe3b3bghjpd1ccq6r4jm5grejpfhbrc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.healthassist",
+            "certificate_hash": "879a7d1fec2fd98c8f2cb9ee10e4b370173ee1df"
+          }
+        },
+        {
+          "client_id": "402691706697-q9q0j4mbidvs8vck7se8735kgdsfjsn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4dueUYXrWBj9sScz37h8i4qE4xXZIqOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402691706697-q9q0j4mbidvs8vck7se8735kgdsfjsn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

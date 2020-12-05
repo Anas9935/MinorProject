@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_login"
@@ -37,7 +36,7 @@
         <EditText
             android:id="@+id/edtu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="textPersonName"
@@ -64,7 +63,7 @@
         <EditText
             android:id="@+id/edtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="textPersonName"
@@ -91,7 +90,7 @@
         <EditText
             android:id="@+id/edtp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="textPassword"
@@ -118,7 +117,7 @@
         <EditText
             android:id="@+id/edtpc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="textPassword"
@@ -146,7 +145,7 @@
         <EditText
             android:id="@+id/edte"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="text"
@@ -174,13 +173,12 @@
         <EditText
             android:id="@+id/edta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="number"
             android:paddingLeft="15dp"
             android:textColor="@android:color/black" />
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -202,7 +200,7 @@
         <EditText
             android:id="@+id/edth"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="number"
@@ -229,7 +227,7 @@
         <EditText
             android:id="@+id/edtw"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="@drawable/textinputborder"
             android:ems="10"
             android:inputType="number"
@@ -259,7 +257,7 @@
             android:id="@+id/SGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark" />
+            android:background="#fff" />
 
         <Space
             android:layout_width="match_parent"
