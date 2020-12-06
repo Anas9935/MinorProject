@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.healthassist.R;
 
 import java.text.DateFormat;
@@ -23,6 +25,7 @@ public class HeartRateResult extends AppCompatActivity {
     private String user, Date;
     int HR;
     DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+    SimpleDateFormat sdf=new SimpleDateFormat("dd,MMM yyyy");
     Date today = Calendar.getInstance().getTime();
 
     @Override
@@ -32,29 +35,43 @@ public class HeartRateResult extends AppCompatActivity {
 
         Date = df.format(today);
         TextView RHR = (TextView) this.findViewById(R.id.HRR);
-        ImageButton SHR = (ImageButton) this.findViewById(R.id.SendHR);
+//        ImageButton SHR = (ImageButton) this.findViewById(R.id.SendHR);
+        TextView SHR=findViewById(R.id.SendHR);
+       // ImageView GIF=findViewById(R.id.HB_GIF);
+        TextView dateToday=findViewById(R.id.HB_DATE);
+        TextView name=findViewById(R.id.HB_NAME);
+
+
+        dateToday.setText(sdf.format(today));
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             HR = bundle.getInt("bpm");
             user = bundle.getString("Usr");
             Log.d("DEBUG_TAG", "ccccc" + user);
-            RHR.setText(String.valueOf(HR));
+            RHR.setText(String.valueOf(HR)+" Bpm");
+            name.setText("Hi "+user);
         }
 
         SHR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
-                i.putExtra(Intent.EXTRA_SUBJECT, "Health Watcher");
-                i.putExtra(Intent.EXTRA_TEXT, user + "'s Heart Rate " + "\n" + " at " + Date + " is :    " + HR);
-                try {
-                    HeartRateResult.this.startActivity(Intent.createChooser(i, "Send mail..."));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(HeartRateResult.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                }
+//                Intent i = new Intent(Intent.ACTION_SEND);
+//                i.setType("message/rfc822");
+//                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
+//                i.putExtra(Intent.EXTRA_SUBJECT, "Health Assist Vital Report");
+//                i.putExtra(Intent.EXTRA_TEXT, user + "'s Heart Rate " + "\n" + " at " + Date + " is :    " + HR);
+//                try {
+//                    HeartRateResult.this.startActivity(Intent.createChooser(i, "Send mail..."));
+//                } catch (android.content.ActivityNotFoundException ex) {
+//                    Toast.makeText(HeartRateResult.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+//                }
+                Intent intent =new Intent(HeartRateResult.this,ReportActivity.class);
+                intent.putExtra("Usr",user);
+                intent.putExtra("vitalType",1);
+                intent.putExtra("vitalVal",""+HR+" Bpm");
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context=".Views.ReportActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Health Assist Vital Report"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        app:srcCompat="@mipmap/logo" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5"
+        android:layout_marginTop="4sp"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="NAME"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            />
+        <TextView
+            android:id="@+id/Report_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Adam Knight"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Age"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            />
+        <TextView
+            android:id="@+id/Report_age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="65"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Gender"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            />
+        <TextView
+            android:id="@+id/Report_gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Male"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Date and Time"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            />
+        <TextView
+            android:id="@+id/Report_datentime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="26, June,2020 10:00 AM"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+    <View
+        android:layout_marginTop="2sp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vitals"
+        android:textColor="#000"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginBottom="16sp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="#e5e5e5"
+        android:layout_marginTop="16sp"
+        android:layout_marginBottom="16sp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/Report_vitalName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Blood Pressure"
+            android:textColor="#000"
+            android:layout_marginStart="16sp"
+            />
+        <TextView
+            android:id="@+id/Report_vital_val"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="96/130"
+            android:textColor="#056AB9"
+            android:layout_marginStart="16sp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="#e5e5e5"
+        android:layout_marginTop="16sp"
+        />
+    <View
+        android:layout_marginTop="2sp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Any Additional Information:"
+        android:textSize="16sp"
+        android:layout_marginStart="16sp"
+        />
+    <EditText
+        android:id="@+id/Report_addnl"
+        android:layout_marginEnd="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_marginStart="16sp"
+        android:paddingBottom="0dp"
+        android:textColor="#000"
+        android:hint="difficulty in Breathing,fever, cough etc"
+        android:textSize="16sp"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5"
+        />
+
+    <TextView
+        android:id="@+id/Report_saveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginStart="64sp"
+        android:layout_marginEnd="64sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Save as Image"
+        android:textColor="#fff"
+        android:paddingTop="8sp"
+        android:paddingBottom="8sp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        />
+    <TextView
+        android:id="@+id/Report_sendBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginStart="64sp"
+        android:layout_marginEnd="64sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Share as Image"
+        android:textColor="#fff"
+        android:paddingTop="8sp"
+        android:paddingBottom="8sp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        />
+
+
+
+
+
+</LinearLayout>
