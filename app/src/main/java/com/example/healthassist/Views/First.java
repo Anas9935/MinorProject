@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.healthassist.GraphView.GraphActivity;
 import com.example.healthassist.R;
 
 public class First extends AppCompatActivity {
@@ -80,7 +81,7 @@ public class First extends AppCompatActivity {
                             loginPrefsEditor.commit();
                         }
 
-                        Intent i = new Intent(v.getContext(), Primary.class);
+                        Intent i = new Intent(v.getContext(), GraphActivity.class);
                         i.putExtra("Usr", usrStr);
                         First.this.startActivity(i);
                         First.this.finish();

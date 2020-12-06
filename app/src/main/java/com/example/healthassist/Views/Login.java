@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.healthassist.GraphView.GraphActivity;
 import com.example.healthassist.R;
 public class Login extends AppCompatActivity {
 
@@ -118,7 +120,7 @@ public class Login extends AppCompatActivity {
                     Data.addUser(per);
                     mainToast = Toast.makeText(Login.this.getApplicationContext(), "Your account has been created", Toast.LENGTH_SHORT);
                     mainToast.show();
-                    Intent i = new Intent(v.getContext(), Primary.class);
+                    Intent i = new Intent(v.getContext(), GraphActivity.class);
                     Login.this.startActivity(i);
                     Login.this.finish();
 
