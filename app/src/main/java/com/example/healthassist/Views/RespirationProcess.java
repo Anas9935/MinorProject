@@ -1,8 +1,10 @@
 package com.example.healthassist.Views;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -12,6 +14,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.healthassist.R;
 import com.example.healthassist.Views.Math.Fft2;
@@ -89,6 +94,16 @@ public class RespirationProcess extends Activity {
         super.onConfigurationChanged(newConfig);
     }
 
+    private void releaseCameraAndPreview() {
+        //preview.setCamera(null);
+
+        if (camera != null) {
+            camera.release();
+            camera = null;
+        }
+    }
+
+
     //Wakelock + Open device camera + set orientation to 90 degree
     //store system time as a start time for the analyzing process
     //your activity to start interacting with the user.
@@ -97,13 +112,27 @@ public class RespirationProcess extends Activity {
     public void onResume() {
         super.onResume();
 
-        wakeLock.acquire();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+            //ask for authorisation
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 50);
+        else
+        //start your camera
+        {
+            wakeLock.acquire();
 
-        camera = Camera.open();
-
-        camera.setDisplayOrientation(90);
-
-        startTime = System.currentTimeMillis();
+            try {
+                releaseCameraAndPreview();
+                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+                camera.setDisplayOrientation(90);
+                startTime = System.currentTimeMillis();
+                previewHolder.addCallback(surfaceCallback);
+                previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+                //Log.e(TAG, "onResume: "+"Here" );
+            } catch (Exception e) {
+                Log.e(getString(R.string.app_name), "failed to open Camera");
+                e.printStackTrace();
+            }
+        }
     }
 
     //call back the frames then release the camera + wakelock and Initialize the camera to null
@@ -113,11 +142,16 @@ public class RespirationProcess extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        wakeLock.release();
-        camera.setPreviewCallback(null);
-        camera.stopPreview();
-        camera.release();
-        camera = null;
+        if(wakeLock.isHeld())
+            wakeLock.release();
+        if(camera!=null) {
+
+            Log.e(TAG, "onPause: Herer" );
+            camera.setPreviewCallback(null);
+            camera.stopPreview();
+            camera.release();
+            camera = null;
+        }
     }
 
     //getting frames data from the camera and start the heartbeat process

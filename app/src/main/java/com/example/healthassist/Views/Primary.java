@@ -3,24 +3,33 @@ package com.example.healthassist.Views;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.healthassist.GraphView.GraphActivity;
 import com.example.healthassist.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Primary extends AppCompatActivity {
 
     private String user;
     private int p;
-
+BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primary);
-
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_app_bar);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        BottomNavigationBar();
         ImageButton HeartRate = this.findViewById(R.id.HR);
         ImageButton BloodPressure = this.findViewById(R.id.BP);
         ImageButton Ox2 = this.findViewById(R.id.O2);
@@ -105,27 +114,35 @@ public class Primary extends AppCompatActivity {
                 Primary.this.finish();
             }
         });
-
     }
-
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                        Primary.super.onBackPressed();
-                        Primary.this.finish();
-                        Primary.this.finishAffinity();
-                       // System.exit(0);
-                    }
-                }).create().show();
+    private void BottomNavigationBar()
+    {
+        bottomNavigationView.getMenu().findItem(R.id.action_test).setChecked(true);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                View view = findViewById(R.id.bottom_navigation);
+                Intent intent;
+                switch (item.getItemId())
+                {
+                    case R.id.action_home:
+                        intent = new Intent(view.getContext(), GraphActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.action_test:
+                        break;
+                    case R.id.action_profile :
+                        intent = new Intent(view.getContext(), ProfileActivity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        break;
+                    case R.id.action_report:
+                        break;
+                }
+                return true;
+            }
+        });
     }
-
 
 }
 

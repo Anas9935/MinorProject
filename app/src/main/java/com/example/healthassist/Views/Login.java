@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthassist.GraphView.GraphActivity;
@@ -21,6 +23,7 @@ public class Login extends AppCompatActivity {
     public String m2 = "Female";
     public String nameStr, weightStr, heightStr, ageStr, passStr, usrStr, usrStrlow, passConStr, emailStr;
     private int age, weight, height;
+    String phone="";
     UserDB Data = new UserDB(this);
     UserDB check = new UserDB(this);
     int c, y = 0;
@@ -30,7 +33,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_app_bar);
         Log = findViewById(R.id.Login);
         ed1 = findViewById(R.id.edth);
         ed2 = findViewById(R.id.edtw);
@@ -42,7 +47,7 @@ public class Login extends AppCompatActivity {
         ed8 = findViewById(R.id.edte);
         GenderSpin = findViewById(R.id.SGender);
 
-
+        phone=getIntent().getStringExtra("Phone");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.Gender, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -117,6 +122,7 @@ public class Login extends AppCompatActivity {
                     per.setheight(height);
                     per.setweight(weight);
                     per.setgender(k);
+                    per.setPhone(phone);
                     Data.addUser(per);
                     mainToast = Toast.makeText(Login.this.getApplicationContext(), "Your account has been created", Toast.LENGTH_SHORT);
                     mainToast.show();

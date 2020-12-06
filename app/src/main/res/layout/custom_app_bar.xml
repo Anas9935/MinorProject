@@ -22,7 +22,7 @@
             android:layout_marginLeft = "10dp"
             android:text = "HealthAssist"
             android:textSize = "20sp"
-            android:textColor = "#000"
+            android:textColor = "#fff"
             android:textStyle = "bold" />
     </LinearLayout>
 </LinearLayout>

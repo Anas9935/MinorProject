@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg4"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="64dp"
     android:paddingTop="16dp"
@@ -16,41 +16,105 @@
 >
 
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/hrl" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Health Assist"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:layout_marginBottom="32sp"
+        />
+    <TextView
+        android:id="@+id/HB_DATE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27,July 2020"
+        android:layout_gravity="start"
+        android:textSize="12sp"
+        />
+    <TextView
+        android:id="@+id/HB_NAME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi, Adam"
+        android:textSize="16dp"
+        android:textColor="#000"
+        android:layout_gravity="start"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today Your Heart Rate Is"
+        android:textColor="#000"
+        android:textSize="16sp"
+        />
+
+
 
     <TextView
         android:id="@+id/HRR"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:text=""
+
+
+        android:gravity="center_vertical"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imageView5"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_gravity="start"
+        android:text="Report:"
+        />
+    <View
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="140dp"
-        app:srcCompat="@mipmap/hrbar" />
+        android:layout_height="100dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Normal Range: 60 - 90"
+        android:textSize="12sp"
+        android:textColor="#000"
+        />
 
-    <ImageButton
+    <TextView
         android:id="@+id/SendHR"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginBottom="40dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/send" />
-
+        android:layout_height="56dp"
+        android:layout_marginStart="32sp"
+        android:layout_marginEnd="32sp"
+        android:text="Generate Report"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="32sp"
+        android:layout_marginEnd="32sp"
+        android:text="New Reading"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        />
 
 </LinearLayout>

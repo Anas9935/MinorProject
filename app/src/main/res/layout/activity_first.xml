@@ -119,6 +119,13 @@
         android:layout_marginBottom="40dp"
         android:backgroundTint="@android:color/transparent"
         app:srcCompat="@mipmap/login" />
-
+    <ImageButton
+        android:id="@+id/About"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:scaleType="fitEnd"
+        app:srcCompat="@mipmap/ab" />
 
 </LinearLayout>

@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.healthassist.R;
+import com.example.healthassist.Views.Primary;
+import com.example.healthassist.Views.ProfileActivity;
+import com.example.healthassist.Views.ReportActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
@@ -143,7 +146,8 @@ public class GraphActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         graph.addSeries(seriesRR);
     }
-    private void addEntryRR() {
+    private void addEntryRR()
+    {
         seriesRR.appendData(new DataPoint(lastX++,40+ rand.nextDouble() * 40d), true, 10);
     }
     private void BottomNavigationBar()
@@ -156,21 +160,18 @@ public class GraphActivity extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        //intent = new Intent(view.getContext(),);
-//                       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        //startActivity(intent);
                         break;
                     case R.id.action_test:
-                        //intent = new Intent(view.getContext(),);
+                        intent = new Intent(view.getContext(), Primary.class);
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        //startActivity(intent);
+                        startActivity(intent);
                         break;
                     case R.id.action_profile :
+                        intent = new Intent(view.getContext(), ProfileActivity.class);
+//                       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         break;
                     case R.id.action_report:
-                        //intent = new Intent(view.getContext(), RewardActivity.class);
-//                       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        //startActivity(intent);
                         break;
                 }
                 return true;

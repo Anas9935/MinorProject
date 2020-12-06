@@ -19,7 +19,7 @@ class user {
     private int height;
     private int weight;
     private int gender;
-
+    private String phone;
     public String getUsername() {
         return username;
     }
@@ -52,6 +52,10 @@ class user {
         return gender;
     }
 
+    public String getPhone()
+    {
+        return phone;
+    }
 
     public void setUsername(String usrname) {
 
@@ -92,12 +96,15 @@ class user {
 
         gender = gen;
     }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
 
 public class UserDB extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "userDB.db";
-
     //columns of the user Info table
     private static final String TABLE = "users";
     private static final String USERNAME = "username";
@@ -108,6 +115,7 @@ public class UserDB extends SQLiteOpenHelper {
     private static final String WEIGHT = "weight";
     private static final String GENDER = "gender";
     private static final String EMAIL = "email";
+    private static  final String PHONE="phone";
 
     SQLiteDatabase db;
 
@@ -117,7 +125,8 @@ public class UserDB extends SQLiteOpenHelper {
 
 
     //checks if the password is correct
-    public String checkPass(String user) {
+    public String checkPass(String user)
+    {
         db = this.getReadableDatabase();
         String query = "select username, password from users";
         Cursor cursor = db.rawQuery(query, null);
@@ -182,6 +191,66 @@ public class UserDB extends SQLiteOpenHelper {
         return w;
     }
 
+    public String getphone(String user) {
+        db = this.getReadableDatabase();
+        String query = "select username, phone from users";
+        Cursor cursor = db.rawQuery(query, null);
+        String a, w;
+        w = "00000000";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(user)) {
+                    w = cursor.getString(1);
+                    break;
+                }
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return w;
+    }
+    public String getemail(String user) {
+        db = this.getReadableDatabase();
+        String query = "select username, email from users";
+        Cursor cursor = db.rawQuery(query, null);
+        String a, w;
+        w = "None";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(user)) {
+                    w = cursor.getString(1);
+                    break;
+                }
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return w;
+    }
+    public String getname(String user) {
+        db = this.getReadableDatabase();
+        String query = "select username, name from users";
+        Cursor cursor = db.rawQuery(query, null);
+        String a, w;
+        w = "Anonymous";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(user)) {
+                    w = cursor.getString(1);
+                    break;
+                }
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return w;
+    }
     public String getheight(String user) {
         db = this.getReadableDatabase();
         String query = "select username, height from users";
@@ -258,6 +327,7 @@ public class UserDB extends SQLiteOpenHelper {
         values.put(HEIGHT, u.getheight());
         values.put(EMAIL, u.getemail());
         values.put(WEIGHT, u.getweight());
+        values.put(PHONE,u.getPhone());
         values.put(GENDER, u.getgender());
         db.insert(TABLE, null, values);
         db.close();
@@ -266,7 +336,7 @@ public class UserDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "create table users ( username text primary key not null, " +
-                " name text not null, password text not null, email text not null, age INTEGER not null, height INTEGER not null, weight INTEGER not null, gender INTEGER not null);";
+                " name text not null, password text not null, email text not null, age INTEGER not null, height INTEGER not null, weight INTEGER not null, gender INTEGER not null,phone text not null);";
         db.execSQL(createTable);
         this.db = db;
 

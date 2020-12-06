@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_login"
         android:layout_width="match_parent"
@@ -18,8 +16,6 @@
         android:paddingBottom="16dp"
         android:weightSum="1"
         tools:context="com.example.yo7a.healthwatcher.Login">
-
-
         <TextView
             android:id="@+id/tva"
             android:layout_width="match_parent"
@@ -256,7 +252,7 @@
         <Spinner
             android:id="@+id/SGender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:background="#fff" />
 
         <Space

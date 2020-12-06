@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,7 @@ public class OTP_Activity extends AppCompatActivity
     private String mVerificationId;
     private String tokenid;
     private OtpTextView otpTextView;
-    public FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     TextView otp_send_invalid,resendcodeenabled;
     String code="";
     String mobil="";
@@ -59,6 +60,7 @@ public class OTP_Activity extends AppCompatActivity
         resendcodeenabled=findViewById(R.id.resend_code_enabled);
         progressBar=findViewById(R.id.progress_bar);
         Intent intent = getIntent();
+        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         otpTextView = findViewById(R.id.otp_view);
         mobil = intent.getStringExtra("mobile");
@@ -208,6 +210,7 @@ public class OTP_Activity extends AppCompatActivity
                                 Toast.makeText(OTP_Activity.this,"Already registered to this number!" +
                                         " Please Login",Toast.LENGTH_SHORT).show();
                                 Intent i=new Intent(OTP_Activity.this,Login.class);
+                                i.putExtra("Phone",mobil);
                                 startActivity(i);
 
                                 finish();
@@ -216,6 +219,7 @@ public class OTP_Activity extends AppCompatActivity
                                 {
 
                                     Intent i=new Intent(OTP_Activity.this,Login.class);
+                                    i.putExtra("Phone",mobil);
                                     startActivity(i);
                                     finish();
                             }

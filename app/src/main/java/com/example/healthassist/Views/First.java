@@ -41,9 +41,16 @@ public class First extends AppCompatActivity {
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         saveLogin = loginPreferences.getBoolean("saveLogin", false);
-
-
-        if (saveLogin) {
+        ImageButton Abt = this.findViewById(R.id.About);
+        Abt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), AboutApp.class);
+                startActivity(i);
+            }
+        });
+        if (saveLogin)
+        {
             ed1.setText(loginPreferences.getString("username", ""));
             ed2.setText(loginPreferences.getString("password", ""));
             chkRememberMe.setChecked(true);
@@ -51,7 +58,8 @@ public class First extends AppCompatActivity {
 
         Meas.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 usrStrlow = ed1.getText().toString();
                 passStr = ed2.getText().toString();
                 usrStr = usrStrlow.toLowerCase();
@@ -70,7 +78,8 @@ public class First extends AppCompatActivity {
                     mainToast.show();
                 } else {
                     checkpassStr = check.checkPass(usrStr);
-                    if (passStr.equals(checkpassStr)) {
+                    if (passStr.equals(checkpassStr))
+                    {
                         if (chkRememberMe.isChecked()) {
                             loginPrefsEditor.putBoolean("saveLogin", true);
                             loginPrefsEditor.putString("username", usrStr);
@@ -83,6 +92,7 @@ public class First extends AppCompatActivity {
 
                         Intent i = new Intent(v.getContext(), GraphActivity.class);
                         i.putExtra("Usr", usrStr);
+                        loginPreferences.edit().putString("username",usrStr).apply();
                         First.this.startActivity(i);
                         First.this.finish();
 

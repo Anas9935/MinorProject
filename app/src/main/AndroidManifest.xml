@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash" />
 
@@ -18,7 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AudioActivity"></activity>
+        <activity
+            android:name=".Views.ReportActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+        <activity android:name=".Activities.AudioActivity" />
         <activity android:name=".MainActivity">
         </activity>
 
@@ -86,17 +91,16 @@
         <activity android:name=".LoginActivities.SignUpActivity" />
         <activity android:name=".LoginActivities.OTP_Activity" />
         <activity android:name=".LoginActivities.SplashScreenActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".LoginActivities.IntroScreen" />
         <activity android:name=".LoginActivities.PhoneAuthActivity" />
         <activity android:name=".GraphView.GraphActivity" />
-
-
+        <activity android:name=".Views.ProfileActivity" />
     </application>
 
 </manifest>
