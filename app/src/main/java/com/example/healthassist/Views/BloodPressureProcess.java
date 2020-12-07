@@ -164,7 +164,7 @@ public class BloodPressureProcess extends Activity {
             wakeLock.release();
         if(camera!=null) {
 
-            Log.e(TAG, "onPause: Herer" );
+            //Log.e(TAG, "onPause: Herer" );
             camera.setPreviewCallback(null);
             camera.stopPreview();
             camera.release();

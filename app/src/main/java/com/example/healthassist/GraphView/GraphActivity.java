@@ -1,5 +1,6 @@
 package com.example.healthassist.GraphView;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import com.example.healthassist.R;
 import com.example.healthassist.Views.Primary;
 import com.example.healthassist.Views.ProfileActivity;
 import com.example.healthassist.Views.ReportActivity;
+import com.example.healthassist.Views.UserDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
@@ -162,8 +164,13 @@ public class GraphActivity extends AppCompatActivity {
                     case R.id.action_home:
                         break;
                     case R.id.action_test:
+                        UserDB check = new UserDB(GraphActivity.this);
+                        SharedPreferences preferences=getSharedPreferences("loginPrefs", MODE_PRIVATE);
+                        String user_name=preferences.getString("username","");
+                        String urs=check.getname(user_name);
                         intent = new Intent(view.getContext(), Primary.class);
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra("Usr",urs);
                         startActivity(intent);
                         break;
                     case R.id.action_profile :
