@@ -1,10 +1,9 @@
 package com.example.healthassist.Views;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -17,11 +16,12 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.healthassist.R;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,7 +36,9 @@ public class ReportActivity extends AppCompatActivity {
 
     TextView name,age,gender,time,vitalName,vitalVal,saveBtn,sendBtn;
     EditText addnl;
-
+    private int REQUEST_CODE_PERMISSIONS = 1001;
+    Uri uri=null;
+    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,15 +175,14 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(addnl.getText()==null || addnl.getText().equals("")){
                     addnl.setText("None");
                 }
-                saveBtn.setVisibility(View.INVISIBLE);
-                sendBtn.setVisibility(View.INVISIBLE);
+//               saveBtn.setVisibility(View.INVISIBLE);
+//                sendBtn.setVisibility(View.INVISIBLE);
                 View root=getWindow().getDecorView().getRootView();
                 Bitmap snapshot=takeScreenShot(root);
                 Log.e("REPORT", "onClick: "+"Snapshot taken" );
@@ -201,12 +202,19 @@ public class ReportActivity extends AppCompatActivity {
                     }
                 }
                 Uri u=saveImage(ReportActivity.this,snapshot,fName);
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("image/jpeg");
-                intent.putExtra(Intent.EXTRA_STREAM, u);
-                startActivity(Intent.createChooser(intent, "Share Image Via"));
+                Log.d("uri",u+"");
+                if(allPermissionsGranted())
+                {
+                    sendTo(u);
+                }
+                else
+                {
+                    uri=u;
+                    ActivityCompat.requestPermissions(ReportActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+                }
 
-                finish();
+
+               // finish();
 
 
 
@@ -214,6 +222,41 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void sendTo(Uri uri)
+    {
+        ImageView imageView=findViewById(R.id.imageView);
+        Glide.with(this).load(uri).into(imageView);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+       // startActivity(Intent.createChooser(intent, "Share Image Via"));
+    }
+    private boolean allPermissionsGranted()
+    {
+
+        for (String permission : REQUIRED_PERMISSIONS)
+        {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted())
+            {
+                 sendTo(uri);
+
+            } else {
+                Toast.makeText(this, "Permissions not granted by the user.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
     public Bitmap takeScreenShot(View view) {
         // configuramos para que la view almacene la cache en una imagen
@@ -233,30 +276,30 @@ public class ReportActivity extends AppCompatActivity {
 
 
 
-    public static Uri saveImage(Context context, Bitmap img, String name){
-
+    public  Uri saveImage(Context context, Bitmap img, String name)
+    {
 
         File f=null;
-
-        if(Build.VERSION.SDK_INT< Build.VERSION_CODES.Q){
-
-                String path= Environment.getExternalStorageDirectory().getPath()+"/HealthAssist/"+name+".jpg";
- //               dir=new File(Environment.getExternalStorageDirectory().getPath()+"/CamScan/.Original");
-                f=new File(path);
-
-
-            //          String path2=Environment.getExternalStorageDirectory().getPath()+System.currentTimeMillis()+".jpg";
-//            original=new File(path2);
-        }else{
-            f=new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"HealthAssist/"+name+".jpg");
-
-
-        }
-
-        File dir=new File(Environment.getExternalStorageDirectory().getPath()+"/HealthAssist");
-        if(!dir.exists() && !dir.isDirectory()){
-            dir.mkdirs();
-        }
+         f=saveimagefile();
+//        if(Build.VERSION.SDK_INT< Build.VERSION_CODES.Q){
+//
+//                String path= Environment.getExternalStorageDirectory().getPath()+"/HealthAssist/"+name+".jpg";
+// //               dir=new File(Environment.getExternalStorageDirectory().getPath()+"/CamScan/.Original");
+//                f=new File(path);
+//
+//
+//            //          String path2=Environment.getExternalStorageDirectory().getPath()+System.currentTimeMillis()+".jpg";
+////            original=new File(path2);
+//        }else{
+//            f=new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"HealthAssist/"+name+".jpg");
+//
+//
+//        }
+//
+//        File dir=new File(Environment.getExternalStorageDirectory().getPath()+"/HealthAssist");
+//        if(!dir.exists() && !dir.isDirectory()){
+//            dir.mkdirs();
+//        }
 
         try {
 
@@ -265,13 +308,29 @@ public class ReportActivity extends AppCompatActivity {
 
             fos.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return Uri.fromFile(f);
+    }
+    private File  saveimagefile()
+    {
+        File dir;
+        File f=null;
+        if(Build.VERSION.SDK_INT< Build.VERSION_CODES.Q){
+            String path= Environment.getExternalStorageDirectory().getPath()+"/HealthAssist/.Original/"+System.currentTimeMillis()+".jpg";
+            dir=new File(Environment.getExternalStorageDirectory().getPath()+"/HealthAssist/.Original");
+            f=new File(path);
+        }
+        else{
+            f=new File(ReportActivity.this.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"HealthAssist/.Original/"+System.currentTimeMillis()+".jpg");
+            dir=new File(ReportActivity.this.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"HealthAssist/.Original");
+        }
+        if(!dir.exists() && !dir.isDirectory()){
+            dir.mkdirs();
+        }
+        return  f;
     }
 
 }

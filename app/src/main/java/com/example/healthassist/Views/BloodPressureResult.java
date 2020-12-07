@@ -79,7 +79,7 @@ public class BloodPressureResult extends AppCompatActivity {
                 intent.putExtra("vitalType",2);
                 intent.putExtra("vitalVal",SP+" / "+DP+" sp/dp");
                 startActivity(intent);
-                finish();
+               // finish();
             }
         });
 
